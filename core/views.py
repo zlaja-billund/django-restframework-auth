@@ -7,4 +7,5 @@ from rest_framework.reverse import reverse
 def api_root(request, format=None):
     return Response({
         "Login": reverse("login", request=request, format=format),
+        "Register": reverse("register", request=request, format=format),
     })

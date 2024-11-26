@@ -1,10 +1,12 @@
 from django.contrib.auth import authenticate
+from rest_framework import generics, status
 from rest_framework.response import Response
 import rest_framework.status as status
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 
-from .serializers import UserSerializer
+from .models import CustomUser
+from .serializers import UserSerializer, RegisterSerializer
 
 class UserLoginView(APIView):
     serializer_class = UserSerializer
@@ -23,3 +25,9 @@ class UserLoginView(APIView):
         token, created = Token.objects.get_or_create(user=user)
 
         return Response({"token": token.key})
+
+
+class RegisterView(generics.ListCreateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = RegisterSerializer
+
