@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #3rd party
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    #local
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +133,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',  # Add this line
     ],
 }
+
+# Override default user model
+AUTH_USER_MODEL = 'users.CustomUser'
