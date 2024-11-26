@@ -3,9 +3,10 @@ from rest_framework.response import Response
 import rest_framework.status as status
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
+from rest_framework import generics
+from django.contrib.auth.models import User
 
 from .serializers import UserSerializer
-
 
 class UserLoginView(APIView):
     serializer_class = UserSerializer
@@ -22,4 +23,5 @@ class UserLoginView(APIView):
             return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
         token, created = Token.objects.get_or_create(user=user)
+
         return Response({"token": token.key})
