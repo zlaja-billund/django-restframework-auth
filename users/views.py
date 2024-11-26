@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate
-from django.shortcuts import render
 from rest_framework.response import Response
 import rest_framework.status as status
 from rest_framework.views import APIView
-from .serializers import UserSerializer
 from rest_framework.authtoken.models import Token
+
+from .serializers import UserSerializer
+
 
 class UserLoginView(APIView):
     serializer_class = UserSerializer
